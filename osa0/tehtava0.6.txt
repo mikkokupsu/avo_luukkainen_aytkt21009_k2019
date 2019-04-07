@@ -1,0 +1,11 @@
+selain->palvelin: HTTP POST: https://fullstack-exampleapp.herokuapp.com/new_note_spa
+palvelin->selain: HTTP Status Code: 201
+note over palvelin:
+{"message":"note created"}
+end note
+
+note over selain:
+selain lisää muistiinpanon sisäiseen
+tietorakenteeseen ja HTML sivun sisältö
+päivittyy
+end note

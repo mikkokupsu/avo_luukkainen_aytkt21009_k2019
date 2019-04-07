@@ -1,0 +1,20 @@
+selain->palvelin: HTTP GET: https://fullstack-exampleapp.herokuapp.com/spa
+palvelin-->selain: HTTP Status Code 200 (OK): HTML koodi
+selain->palvelin: HTTP GET: https://fullstack-exampleapp.herokuapp.com/spa.js
+palvelin-->selain: HTTP Status Code 200 (OK): spa.js
+selain->palvelin: HTTP GET: https://fullstack-exampleapp.herokuapp.com/main.css
+palvelin-->selain: HTTP Status Code 200 (OK): main.css
+
+note over selain:
+selain suorittaa javascript-
+koodia ja pyytää data.json palvelimelta
+end note
+
+selain->palvelin: HTTP GET: https://fullstack-exampleapp.herokuapp.com/data.json
+palvelin-->selain: HTTP Status Code 200 (OK): data.json
+
+note over selain:
+selain muodostaa sivun
+data.json sisällön mukaan
+end note
+
