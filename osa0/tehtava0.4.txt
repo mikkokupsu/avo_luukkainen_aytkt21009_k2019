@@ -1,0 +1,31 @@
+selain->palvelin: HTTP POST: https://fullstack-exampleapp.herokuapp.com/new_note
+palvelin-->selain: HTTP Status Code 302 (Redirect) -> Location: /notes
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/notes 
+palvelin-->selain: HTML-koodi
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.css
+note over palvelin:
+main.css latautuu selaimen
+välimuistista eikä palvelimelta
+end note
+palvelin-->selain: main.css
+
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.js
+note over palvelin:
+main.js latautuu selaimen
+välimuistista eikä palvelimelta
+end note
+palvelin-->selain: main.js
+
+note over selain:
+selain suorittaa koodia ja
+pyytää data.json palvelimelta
+
+end note
+
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/data.json
+palvelin-->selain:
+
+note over selain:
+selain luoda data.json pohjalta
+tarvittavat linkit dynaamisesti
+end note
