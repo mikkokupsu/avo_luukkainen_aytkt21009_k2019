@@ -3,34 +3,19 @@ import ReactDOM from 'react-dom'
 
 const Button = ({text, increment}) => <button onClick={increment}>{text}</button>
 
-const Total = ({good, neutral, bad}) => <div><p>yhteensä {good + neutral + bad}</p></div>
-
-const Average = ({good, neutral, bad}) => {
-    const count = good + neutral + bad
-    if (count !== 0) {
-        return (<div><p>keskiarvo {(good - bad) / count}</p></div>)
-    }
-    return <div />
-}
-
-const Positive = ({good, neutral, bad}) => {
-    const count = good + neutral + bad
-    if (count !== 0) {
-        return (<div><p>positiivisia {good / count * 100}</p></div>)
-    }
-    return <div />
-}
+const Statistic = ({label, value}) => <div><p>{label} {value()}</p></div>
 
 const Statistics = ({good, neutral, bad}) => {
-    if (good + neutral + bad > 0) {
+    const count = good + neutral + bad
+    if (count > 0) {
         return (
             <div>
-                <p>hyvä {good}</p>
-                <p>neutraali {neutral}</p>
-                <p>huono {bad}</p>
-                <Total good={good} neutral={neutral} bad={bad} />
-                <Average good={good} neutral={neutral} bad={bad} />
-                <Positive good={good} neutral={neutral} bad={bad} />
+                <Statistic label="hyvä" value={() => good} />
+                <Statistic label="neutraal" value={() => neutral} />
+                <Statistic label="huono" value={() => bad} />
+                <Statistic label="yhteensä" value={() => count} />
+                <Statistic label="keskiarvo" value={() => (good - bad) / count} />
+                <Statistic label="positiivisia" value={() => good / count * 100} />
             </div>
         )
     } else {
