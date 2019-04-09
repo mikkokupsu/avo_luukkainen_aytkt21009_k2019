@@ -21,17 +21,22 @@ const Positive = ({good, neutral, bad}) => {
     return <div />
 }
 
-const Statistics = ({good, neutral, bad}) => (
-    <div>
-        <h1>statistiikka</h1>
-        <p>hyvä {good}</p>
-        <p>neutraali {neutral}</p>
-        <p>huono {bad}</p>
-        <Total good={good} neutral={neutral} bad={bad} />
-        <Average good={good} neutral={neutral} bad={bad} />
-        <Positive good={good} neutral={neutral} bad={bad} />
-    </div>
-)
+const Statistics = ({good, neutral, bad}) => {
+    if (good + neutral + bad > 0) {
+        return (
+            <div>
+                <p>hyvä {good}</p>
+                <p>neutraali {neutral}</p>
+                <p>huono {bad}</p>
+                <Total good={good} neutral={neutral} bad={bad} />
+                <Average good={good} neutral={neutral} bad={bad} />
+                <Positive good={good} neutral={neutral} bad={bad} />
+            </div>
+        )
+    } else {
+        return <div><p>Ei yhtään palautetta annettu</p></div>
+    }
+}
 
 const App = () => {
   // tallenna napit omaan tilaansa
@@ -47,6 +52,7 @@ const App = () => {
             <Button text="neutraali" increment={() => setNeutral(neutral + 1)} />
             <Button text="huono" increment={() => setBad(bad + 1)}/>
         </div>
+        <h1>statistiikka</h1>
         <Statistics good={good} neutral={neutral} bad={bad} />
     </div>
   )
