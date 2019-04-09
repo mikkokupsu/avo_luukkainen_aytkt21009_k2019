@@ -3,19 +3,23 @@ import ReactDOM from 'react-dom'
 
 const Button = ({text, increment}) => <button onClick={increment}>{text}</button>
 
-const Statistic = ({label, value}) => <div><p>{label} {value()}</p></div>
+const Statistic = ({label, value}) => <tr><td>{label}</td><td>{value()}</td></tr>
 
 const Statistics = ({good, neutral, bad}) => {
     const count = good + neutral + bad
     if (count > 0) {
         return (
             <div>
-                <Statistic label="hyvä" value={() => good} />
-                <Statistic label="neutraal" value={() => neutral} />
-                <Statistic label="huono" value={() => bad} />
-                <Statistic label="yhteensä" value={() => count} />
-                <Statistic label="keskiarvo" value={() => (good - bad) / count} />
-                <Statistic label="positiivisia" value={() => good / count * 100} />
+                <table>
+                    <tbody>
+                        <Statistic label="hyvä" value={() => good} />
+                        <Statistic label="neutraal" value={() => neutral} />
+                        <Statistic label="huono" value={() => bad} />
+                        <Statistic label="yhteensä" value={() => count} />
+                        <Statistic label="keskiarvo" value={() => (good - bad) / count} />
+                        <Statistic label="positiivisia" value={() => good / count * 100} />
+                    </tbody>
+                </table>
             </div>
         )
     } else {
