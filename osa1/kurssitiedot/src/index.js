@@ -10,9 +10,9 @@ const Header = (props) => {
 const Content = (props) => {
     return (
         <div>
-          <Part partName={props.part1.name} exerciseCount={props.part1.exercises} />
-          <Part partName={props.part2.name} exerciseCount={props.part2.exercises} />
-          <Part partName={props.part3.name} exerciseCount={props.part3.exercises} />
+          <Part partName={props.parts[0].name} exerciseCount={props.parts[0].exercises} />
+          <Part partName={props.parts[1].name} exerciseCount={props.parts[1].exercises} />
+          <Part partName={props.parts[2].name} exerciseCount={props.parts[2].exercises} />
         </div>
       )
 }
@@ -27,33 +27,32 @@ const Part = (props) => {
 
 const Total = (props) => {
     return (
-        <p>yhteensä {props.exerciseCount} tehtävää</p>
+        <p>yhteensä {props.parts.map(i => i.exercises).reduceRight((a, b) => a + b, 0)} tehtävää</p>
     )
 }
 
 const App = () => {
     const course = 'Half Stack -sovelluskehitys'
-    const part1 = {
-      name: 'Reactin perusteet',
-      exercises: 10
-    }
-    const part2 = {
-      name: 'Tiedonvälitys propseilla',
-      exercises: 7
-    }
-    const part3 = {
-      name: 'Komponenttien tila',
-      exercises: 14
-    }
+    const parts = [
+        {
+            name: 'Reactin perusteet',
+            exercises: 10
+        },
+        {
+            name: 'Tiedonvälitys propseilla',
+            exercises: 7
+        },
+        {
+            name: 'Komponenttien tila',
+            exercises: 14
+        }
+    ]
   
   return (
     <div>
       <Header courseName={course}/>
-      <Content 
-        part1={part1}
-        part2={part2}
-        part3={part3} />
-      <Total exerciseCount={part1.exercises + part2.exercises + part3.exercises} />
+      <Content parts={parts} />
+      <Total parts={parts} />
     </div>
     )
 }
